@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechFix Solutions</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+header {
+    position: fixed;
+    top: 0;
+    background: #0a192f;
+    padding: 15px 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+}
+
+.logo {
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* HERO */
+#hero {
+    background: linear-gradient(to right, #0a192f, #1f4068);
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #e67e22;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+/* SERVICES */
+#services {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#service-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #f4f4f4;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ABOUT */
+#about {
+    background: #eee;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* CONTACT */
+#contact {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+form button {
+    padding: 10px;
+    background: #0a192f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    display: block;
+}
+
+/* FOOTER */
+footer {
+    background: #0a192f;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* SCROLL ANIMATION */
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h1 class="logo">TechFix</h1>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero">
+    <h2>Fast & Reliable Tech Repair Services</h2>
+    <p>We fix phones, laptops, and gadgets with speed and precision.</p>
+    <a href="#" class="btn">Get Started</a>
+</section>
+
+<section id="services">
+    <h2 >Our Services</h2>
+    <div id="service-box">
+        <div class="card">
+            <h3>Phone Repair</h3>
+            <p>Screen replacement, battery issues, and more.</p>
+        </div>
+        <div class="card">
+            <h3>Laptop Repair</h3>
+            <p>Hardware and software troubleshooting.</p>
+        </div>
+        <div class="card">
+            <h3>Data Recovery</h3>
+            <p>Recover lost or deleted important files.</p>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>TechFix Solutions is dedicated to providing top-quality repair services with customer satisfaction as our priority.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name">
+        <small class="error" id="nameError"></small>
+
+        <input type="email" id="email" placeholder="Your Email">
+        <small class="error" id="emailError"></small>
+
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <small class="error" id="messageError"></small>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 TechFix Solutions. All rights reserved.</p>
+</footer>
+
+<script>
+// FORM VALIDATION
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    let valid = true;
+
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        valid = false;
+    } else {
+        document.getElementById("nameError").innerText = "";
+    }
+
+    if (!email.includes("@")) {
+        document.getElementById("emailError").innerText = "Enter a valid email";
+        valid = false;
+    } else {
+        document.getElementById("emailError").innerText = "";
+    }
+
+    if (message === "") {
+        document.getElementById("messageError").innerText = "Message cannot be empty";
+        valid = false;
+    } else {
+        document.getElementById("messageError").innerText = "";
+    }
+
+    if (valid) {
+        alert("Message sent successfully!");
+        form.reset();
+    }
+});
+
+// SCROLL ANIMATION
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+    let triggerBottom = window.innerHeight * 0.8;
+
+    sections.forEach(section => {
+        let sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop < triggerBottom) {
+            section.classList.add("show");
+        } else {
+            section.classList.remove("show");
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
